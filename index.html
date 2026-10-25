@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriRoot Marinduque - Arrowroot Hub</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --accent: #e65100;
+            --light: #f1f8e9;
+            --dark: #212121;
+            --white: #ffffff;
+            --gray: #757575;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: var(--light);
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(46, 125, 50, 0.85), rgba(27, 94, 32, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232e7d32"/><path d="M0,50 Q25,25 50,50 T100,50" fill="none" stroke="%231b5e20" stroke-width="2"/></svg>');
+            color: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h2 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid { grid-template-columns: 1fr 2fr; }
+        }
+
+        .card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--primary);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input[type="date"]:focus {
+            outline: 2px solid var(--primary);
+        }
+
+        button {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        button:hover { background-color: var(--primary-dark); }
+        button:focus { outline: 3px solid var(--accent); }
+
+        .result-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: var(--light);
+            border-left: 4px solid var(--primary);
+            border-radius: 4px;
+            display: none;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #e0e0e0;
+            color: var(--dark);
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            width: auto;
+        }
+
+        .filter-btn.active {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 600px) {
+            .product-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .product-item {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .product-item:hover { transform: translateY(-2px); }
+
+        .badge {
+            display: inline-block;
+            background: var(--light);
+            color: var(--primary-dark);
+            padding: 0.2rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            background-color: #f5f5f5;
+            color: var(--gray);
+            font-size: 0.85rem;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <h1>AgriRoot Marinduque</h1>
+            <p class="tagline">Empowering local arrowroot growers & cooperatives</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Preserving Heritage, Maximizing Yield</h2>
+            <p>Calculate growth parameters and access local, authentic Marinduque agricultural products directly.</p>
+        </section>
+
+        <div class="grid">
+            <!-- Left Side: Interactive Harvest Tracker Component -->
+            <section class="card">
+                <h3>Harvest Cycle Tracker</h3>
+                <form id="trackerForm" onsubmit="calculateHarvest(event)">
+                    <div class="form-group">
+                        <label for="plantingDate">Select Planting Date:</label>
+                        <input type="date" id="plantingDate" required>
+                    </div>
+                    <button type="submit">Project Harvest Windows</button>
+                </form>
+
+                <div id="resultBox" class="result-box" aria-live="polite">
+                    <p><strong>Earliest Harvest (8 mos):</strong> <span id="earlyDate">-</span></p>
+                    <p><strong>Optimal Harvest (10 mos):</strong> <span id="lateDate">-</span></p>
+                </div>
+            </section>
+
+            <!-- Right Side: Interactive Showcase Component -->
+            <section class="card">
+                <h3>Local Showcase & Cooperative Registry</h3>
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterCategory('all', this)">All Products</button>
+                    <button class="filter-btn" onclick="filterCategory('Food', this)">Processed Food</button>
+                    <button class="filter-btn" onclick="filterCategory('Raw Material', this)">Raw Materials</button>
+                </div>
+
+                <div class="product-grid" id="productGrid">
+                    <div class="product-item" data-category="Food">
+                        <span class="badge">Food</span>
+                        <h4>Traditional Arrowroot Cookies</h4>
+                        <p style="font-size: 0.9rem; color: var(--gray);">Authentic leaf-printed artisan delicacies processed by Boac Growers Association.</p>
+                    </div>
+                    <div class="product-item" data-category="Raw Material">
+                        <span class="badge">Raw Material</span>
+                        <h4>Raw Tuber Flakes</h4>
+                        <p style="font-size: 0.9rem; color: var(--gray);">Sun-dried high-starch organic raw tubers sourced straight from Mogpog farmers.</p>
+                    </div>
+                    <div class="product-item" data-category="Food">
+                        <span class="badge">Food</span>
+                        <h4>Organic Arrowroot Flour</h4>
+                        <p style="font-size: 0.9rem; color: var(--gray);">Premium gluten-free alternative baking flour ground by Gasan Cooperatives.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 AgriRoot Marinduque — MarSU College of Information and Computing Sciences. Demonstration Sandbox Content.</p>
+    </footer>
+
+    <script>
+        function calculateHarvest(event) {
+            event.preventDefault();
+            const dateInput = document.getElementById('plantingDate').value;
+            if(!dateInput) return;
+
+            const plantingDate = new Date(dateInput);
+            
+            // Calculate 8 Months later
+            const earlyHarvest = new Date(plantingDate);
+            earlyHarvest.setMonth(earlyHarvest.getMonth() + 8);
+            
+            // Calculate 10 Months later
+            const lateHarvest = new Date(plantingDate);
+            lateHarvest.setMonth(lateHarvest.getMonth() + 10);
+
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            
+            document.getElementById('earlyDate').innerText = earlyHarvest.toLocaleDateString('en-US', options);
+            document.getElementById('lateDate').innerText = lateHarvest.toLocaleDateString('en-US', options);
+            document.getElementById('resultBox').style.display = 'block';
+        }
+
+        function filterCategory(category, button) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            document.querySelectorAll('.product-item').forEach(item => {
+                if(category === 'all' || item.getAttribute('data-category') === category) {
+                item.style.display = 'block';
+                } else {
+                item.style.display = 'none';
+                }
+                });
+                }
